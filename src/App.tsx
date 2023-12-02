@@ -32,9 +32,13 @@ function App() {
       fetchTodos()
         .then(response => response.json())
         .then(data => localStorage.setItem('todos', JSON.stringify(data)))
+        .then(() => dispatch(setTodos(JSON.parse(localStorage.getItem('todos') || '{}'))))
+
     }
 
-    dispatch(setTodos(JSON.parse(localStorage.getItem('todos') || '{}')))
+    if (localStorage.getItem('todos') !== null) {
+      dispatch(setTodos(JSON.parse(localStorage.getItem('todos') || '{}')))
+    }
   }, [])
 
   return (
