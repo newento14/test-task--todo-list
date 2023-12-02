@@ -1,4 +1,5 @@
 import {useTypedSelector} from "../redux/store.ts";
+import TodoList from "../components/TodoList/TodoList.tsx";
 
 
 const Active = () => {
@@ -7,9 +8,7 @@ const Active = () => {
 
   console.log(activeTodos)
   return (
-    <div>
-
-    </div>
+    <TodoList todos={activeTodos}/>
   );
 };
 

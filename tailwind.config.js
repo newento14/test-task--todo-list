@@ -5,9 +5,6 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    fontFamily: {
-      montserrat: ['var(--font-roboto-mono)'],
-    },
     extend: {
       colors: {
         'main': '#202020',
