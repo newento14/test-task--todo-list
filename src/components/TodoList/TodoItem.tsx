@@ -9,14 +9,16 @@ import {removeTodo, updateTodo} from "../../redux/reducers/todosSlice.ts";
 import TodoModal from "../Modal.tsx";
 import Typography from "@mui/material/Typography";
 import {TextField} from "@mui/material";
+import {AnimatePresence, motion} from "framer-motion";
 
 const TodoItem: React.FC<{ todo: ITodos }> = ({todo}) => {
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
   const [visible, setVisible] = useState(false);
-
+  const [checked, setChecked] = useState(todo.completed);
 
   const handleComplete = () => {
+    setChecked(!checked);
     dispatch(updateTodo({...todo, completed: !todo.completed}));
   }
 
@@ -34,19 +36,32 @@ const TodoItem: React.FC<{ todo: ITodos }> = ({todo}) => {
   }
 
   return (
-    <section
-      className="text-white/70 flex justify-between items-center bg-cyan-600 w-full group/item">
+    <motion.section
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      transition={{duration: 1.1, type: 'tween'}}
+      className="text-white/70 flex justify-between items-center bg-main px-2 py-1 w-full group/item relative">
+      <AnimatePresence>
+        {checked && (
+          <motion.div
+            initial={{width: 0}}
+            animate={{width: '100%'}}
+            exit={{width: 0}}
+            transition={{duration: 0.3, type: 'tween'}}
+            className="absolute z-[999] left-0 top-0 h-[3px] bg-black bottom-0 my-auto"/>
+        )}
+      </AnimatePresence>
       <div className="flex items-center">
-        <BpCheckbox checked={todo.completed} onClick={handleComplete}/>
+        <BpCheckbox checked={checked} onClick={handleComplete}/>
         <p className="max-w-[500px]">
           {todo.title}
         </p>
       </div>
-      <div className="items-center justify-center hidden group-hover/item:flex px-2">
-        <button className="bg-purple" onClick={handleOpenModal}>
+      <div className="items-center justify-center flex px-2 gap-x-2">
+        <button onClick={handleOpenModal}>
           <HiOutlinePencil size={25}/>
         </button>
-        <button className="bg-purple" onClick={handleDelete}>
+        <button onClick={handleDelete}>
           <MdDeleteOutline size={25}/>
         </button>
       </div>
@@ -61,7 +76,7 @@ const TodoItem: React.FC<{ todo: ITodos }> = ({todo}) => {
           </button>
         </div>
       </TodoModal>)}
-    </section>
+    </motion.section>
   );
 };
 

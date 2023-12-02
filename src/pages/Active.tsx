@@ -6,7 +6,6 @@ const Active = () => {
   const todos = useTypedSelector(state => state.todos.todos);
   const activeTodos = todos.filter(todo => todo.completed === false);
 
-  console.log(activeTodos)
   return (
     <TodoList todos={activeTodos}/>
   );

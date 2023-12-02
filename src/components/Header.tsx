@@ -39,9 +39,9 @@ const Header = () => {
 
   return (
     <header
-      className="bg-secondary text-white/70 uppercase h-[50px] flex justify-end items-center border-b-[1px] border-purple fixed w-full z-[1000] px-4">
-      <nav>
-        <ul className="absolute top-0 left-0 bottom-0 right-0 m-auto flex justify-center items-center gap-x-4 w-fit">
+      className="bg-secondary text-white/70 uppercase h-[50px] flex justify-end max-sm:justify-center items-center border-b-[1px] border-purple fixed w-full z-[1000] px-4">
+      <nav className="flex gap-x-4">
+        <ul className="absolute max-sm:static top-0 left-0 bottom-0 right-0 m-auto flex justify-center items-center gap-x-4 w-fit">
           {links.map(({href, label}) => (
             <li key={label} className="hover:text-purple transition-all duration-300">
               <Link to={href}>{label}</Link>
