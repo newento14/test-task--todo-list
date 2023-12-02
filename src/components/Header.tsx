@@ -17,7 +17,7 @@ const links = [
 
 const Header = () => {
   return (
-    <header className="bg-secondary text-white/70 uppercase h-[50px] flex justify-center items-center border-b-[1px] border-purple">
+    <header className="bg-secondary text-white/70 uppercase h-[50px] flex justify-center items-center border-b-[1px] border-purple fixed w-full">
       <nav>
         <ul className="flex justify-center items-center gap-x-4">
           {links.map(({ href, label }) => (
