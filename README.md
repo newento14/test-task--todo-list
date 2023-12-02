@@ -8,4 +8,4 @@ npm i
 npm run dev 
 ```
 
-Then open http://localhost:5173 to see your app.
+Then open http://localhost:5173
